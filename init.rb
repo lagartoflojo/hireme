@@ -38,16 +38,10 @@ module HireMe
     # the Github user
     get '/:username.?:format?' do
       @username = params[:username]
-      @user     = User.find(@username)
+      @user     = HireMe::User.find_by_name(@username)
       @title    = "#{@username}'s Profile"
 
-      stats = [
-        {name: "Ruby", count: 10, percentage: (10.0/21.0).round(2)},
-        {name: "PHP", count: 4, percentage: (4.0/21.0).round(2)},
-        {name: "Python", count: 7, percentage: (7.0/21.0).round(2)}
-      ]
-
-      @lang_stats = build_highcharts_array(stats)
+      @lang_stats = build_highcharts_array(@user[:user][:lang_stats])
 
       erb :profile
     end

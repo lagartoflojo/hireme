@@ -1,3 +1,4 @@
+require 'yajl'
 module HireMe
   # Schema:
   # {
