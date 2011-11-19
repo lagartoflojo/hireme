@@ -32,7 +32,7 @@
 		
 		<a href="https://github.com/<%= @user.login %>"> My github profile</a><br>
 		
-    <% if @user.email %>
+    <% if @user.email && @user.hireable %>
       <a href="mailto:<%= @user.email %>" class="btn success hireme">
         Hire Me!
       </a>
