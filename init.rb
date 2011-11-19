@@ -13,7 +13,7 @@ module HireMe
 
     # Show a search box
     get '/' do
-      #hello
+      erb :index
     end
 
 
