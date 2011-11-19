@@ -1,7 +1,7 @@
 <div class="page-header">
   <div class="row">
     <div class="span10">
-    <h1><%= @user.name %>'s Profile<br><small>Checkout my coding skills</small></h1>
+    <h1><%= @user.name %><small>Checkout my coding skills</small></h1>
     <% if @user.bio %>
   	  <p><%= @user.bio%></p>
     <% end %>
@@ -32,7 +32,7 @@
 		
 		<a href="https://github.com/<%= @user.login %>"> My github profile</a><br>
 		
-    <% unless @user.email %>
+    <% if @user.email %>
       <a href="mailto:<%= @user.email %>" class="btn success hireme">
         Hire Me!
       </a>
