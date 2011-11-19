@@ -41,10 +41,10 @@ module HireMe
       search = HireMe::User.find_by_name(@username)
       pass if search.nil?
       
-      user     = search[:user]
+      @user     = search[:user]
       @title    = "#{@username}'s Profile"
 
-      @lang_stats = build_highcharts_array(user[:lang_stats])
+      @lang_stats = build_highcharts_array(@user[:lang_stats])
 
       erb :profile
     end
