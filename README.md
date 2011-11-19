@@ -9,7 +9,7 @@ $ npm install -g coffee-script
 
 ### Install UglifyJS
 ```bash
-npm install uglify-js
+$ npm install -g uglify-js
 ```
 
 ### Compile CoffeeScript into a single file and minify
