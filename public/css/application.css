@@ -47,7 +47,7 @@ border: 0;
 	float: right;
 }
 
-.search-box input {
+.search-box input, a.hireme {
   font-size: 22px;
   height: 40px;
 }
