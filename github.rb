@@ -1,4 +1,5 @@
 require 'yajl'
+
 module HireMe
   # Schema:
   # {
@@ -38,7 +39,7 @@ module HireMe
       representation[:user][:login]       = user["login"]
       representation[:user][:name]        = user["name"]
       representation[:user][:bio]         = user["bio"]
-      representation[:user][:avatar_url] = user["avatar_url"]
+      representation[:user][:avatar_url]  = user["avatar_url"]
       representation[:user][:lang_stats]  = lang_stats "#{API}/users/#{user['login']}/repos", 1
 
       representation
@@ -69,8 +70,8 @@ module HireMe
     end
 
     def self.next_link? headers
-      next_link, = headers["Link"].scan('rel="next"')
-      !!next_link
+        next_link, = headers["Link"].scan('rel="next"') unless headers["Link"].empty?
+        return !!next_link
     end
   end
 end
