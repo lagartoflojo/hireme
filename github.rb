@@ -8,7 +8,11 @@ module HireMe
   #       bio:
   #       avatar_url:
   #       lang_stats:
-  #         "#{lang}":
+  #         [
+  #           name:
+  #           count:
+  #           percentage:
+  #         ]
   #     }
   # }
 
@@ -51,10 +55,13 @@ module HireMe
       end
 
       langs = repos.flatten.collect { |repo| repo["language"] }.delete_if { |lang| lang == nil }.sort
-      stats = {}
+      stats = []
 
       langs.uniq.each do |lang|
-        stats["#{lang}"] = langs.count { |l| l == lang }
+        count      = langs.count { |l| l == lang }
+        percentage = ( count/( langs.count ).to_f ).round 4
+
+        stats << { name: lang, count: count, percentage: percentage }
       end
 
       stats
