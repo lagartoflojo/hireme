@@ -1,0 +1,49 @@
+<h1><%= @username %>'s Profile</h1>
+
+<section>
+<h2>Stats</h2>
+<%= @lang_stats %>
+
+<div id="container" class="highcharts-container" style="height:410px; margin: 0 2em; clear:both; min-width: 600px"></div>
+
+<script>
+var chart;
+$(document).ready(function() {
+   chart = new Highcharts.Chart({
+      chart: {
+         renderTo: 'container',
+         plotBackgroundColor: null,
+         plotBorderWidth: null,
+         plotShadow: false
+      },
+      title: {
+         text: 'Browser market shares at a specific website, 2010'
+      },
+      tooltip: {
+         formatter: function() {
+            return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
+         }
+      },
+      plotOptions: {
+         pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+               enabled: true,
+               color: Highcharts.theme.textColor || '#000000',
+               connectorColor: Highcharts.theme.textColor || '#000000',
+               formatter: function() {
+                  return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
+               }
+            }
+         }
+      },
+       series: [{
+         type: 'pie',
+         name: 'Browser share',
+         data: 
+      }]
+   });
+});
+</script>
+</section>
