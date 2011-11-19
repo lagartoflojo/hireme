@@ -8,15 +8,23 @@ module HireMe
                   :bio,
                   :avatar_url,
                   :lang_stats,
-                  :email
+                  :email,
+                  :location,
+                  :hireable,
+                  :public_repos,
+                  :public_gists
 
     def initialize params
-      @login      = params["login"]
-      @email      = params["email"]
-      @name       = params["name"]
-      @bio        = params["bio"]
-      @avatar_url = params["avatar_url"]
-      @lang_stats = get_lang_stats "#{API}/users/#{params['login']}/repos", 1
+      @login        = params["login"]
+      @email        = params["email"]
+      @name         = params["name"]
+      @bio          = params["bio"]
+      @avatar_url   = params["avatar_url"]
+      @location     = params["location"]
+      @hireable     = params["hireable"]
+      @public_repos = params["public_repos"]
+      @public_gists = params["public_gists"]
+      @lang_stats   = get_lang_stats "#{API}/users/#{params['login']}/repos", 1
     end
 
     private
