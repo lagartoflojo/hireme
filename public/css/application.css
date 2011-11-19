@@ -48,11 +48,17 @@ body {
 	float: right;
 }
 
-.search-box input, a.hireme {
+.search-box input {
   font-size: 22px;
   height: 40px;
 }
 
 .search-box input[type='submit'] {
   height: 50px;
+}
+
+a.hireme {
+  font-size: 30px;	
+  width: 90%;
+  text-align: center;
 }
