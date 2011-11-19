@@ -13,7 +13,7 @@ module HireMe
 
     end
 
-    def name
+    def display_name
       @name || @login
     end
 
