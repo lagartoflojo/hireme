@@ -39,6 +39,16 @@ module HireMe
     end
 
 
+    get '/about' do
+      erb 'soon...'    
+    end
+    
+    get '/contact' do
+      erb 'soon...'
+    end
+    
+    
+
     # Return JSON or HTML representing
     # the Github user
     get '/:username.?:format?' do

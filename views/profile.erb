@@ -1,7 +1,12 @@
 <div class="page-header">
-	<img src="<%= @user.avatar_url%>" class="right">
-  <h1><%= @user.name %>'s Profile <small>Checkout my coding skills</small></h1>
-	<p><%= @user.bio%></p>
+  <div class="row">
+    <div class="span12">
+    <h1><%= @user.name %>'s Profile <small>Checkout my coding skills</small></h1>
+  	<p><%= @user.bio%></p>
+  </div>
+  <div class="span2">
+    <img src="<%= @user.avatar_url%>">
+  </div>
 </div>
 <div class="row">
   <div class="span10">
@@ -12,6 +17,8 @@
       style=""></div>
   </div>
   <div class="span4">
-    <h3>Secondary content</h3>
+    <a href="mailto:<%= @user.email %>" class="btn success hireme">
+      Hire Me!
+    </a>
   </div>
 </div>
