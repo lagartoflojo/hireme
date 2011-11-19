@@ -39,11 +39,17 @@ module HireMe
     get '/:username.?:format?' do
       @username = params[:username]
       @user     = HireMe::User.find_by_name(@username)
+      pass unless @user.nil?
+      
       @title    = "#{@username}'s Profile"
-
       @lang_stats = build_highcharts_array(@user[:user][:lang_stats])
 
       erb :profile
+    end
+    
+    
+    not_found do
+        'This is nowhere to be found.'
     end
 
   end
