@@ -13,7 +13,15 @@ module HireMe
 
     end
 
+    def name
+      @name || @login
+    end
+
     private
+
+    def method_missing method, *arguments, &block
+      nil
+    end
 
     def get_lang_stats url, page
       response = Typhoeus::Request.get url
