@@ -45,7 +45,7 @@ module HireMe
       @user = HireMe::Search.find params[:username]
       pass if @user.nil?
 
-      @title    = "#{@username}'s Profile"
+      @title    = "#{@user.name}'s Profile"
 
       @lang_stats = build_highcharts_array @user.lang_stats
 
