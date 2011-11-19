@@ -10,7 +10,7 @@ module HireMe
         array = "["
         data.each_with_index do |datum, i|
           inner_array = "["
-          inner_array << '"' + datum[:lang] + '"'
+          inner_array << '"' + datum[:name] + '"'
           inner_array << ','
           inner_array << datum[:percentage].to_s
           inner_array << ']'
@@ -38,12 +38,13 @@ module HireMe
     # the Github user
     get '/:username.?:format?' do
       @username = params[:username]
+      @user     = User.find(@username)
       @title    = "#{@username}'s Profile"
 
       stats = [
-        {lang: "Ruby", count: 10, percentage: (10.0/21.0).round(2)},
-        {lang: "PHP", count: 4, percentage: (4.0/21.0).round(2)},
-        {lang: "Python", count: 7, percentage: (7.0/21.0).round(2)}
+        {name: "Ruby", count: 10, percentage: (10.0/21.0).round(2)},
+        {name: "PHP", count: 4, percentage: (4.0/21.0).round(2)},
+        {name: "Python", count: 7, percentage: (7.0/21.0).round(2)}
       ]
 
       @lang_stats = build_highcharts_array(stats)
