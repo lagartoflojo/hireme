@@ -70,8 +70,7 @@ module HireMe
     end
 
     def self.next_link? headers
-        raise "#{headers.inspect}"
-        next_link, = headers["Link"].scan('rel="next"')
+        next_link, = headers["Link"].scan('rel="next"') unless headers["Link"].empty?
         return !!next_link
     end
   end
