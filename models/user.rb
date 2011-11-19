@@ -7,10 +7,12 @@ module HireMe
                   :name,
                   :bio,
                   :avatar_url,
-                  :lang_stats
+                  :lang_stats,
+                  :email
 
     def initialize params
       @login      = params["login"]
+      @email      = params["email"]
       @name       = params["name"]
       @bio        = params["bio"]
       @avatar_url = params["avatar_url"]
