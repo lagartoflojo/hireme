@@ -1,4 +1,9 @@
+require 'yajl'
+
 module HireMe
+
+  API = "https://api.github.com"
+
   class Init < Sinatra::Base
 
     configure do
@@ -37,18 +42,16 @@ module HireMe
     # Return JSON or HTML representing
     # the Github user
     get '/:username.?:format?' do
-      @username = params[:username]
-      search = HireMe::User.find_by_name(@username)
-      pass if search.nil?
-      
-      @user     = search[:user]
+      @user = HireMe::Search.find params[:username]
+      pass if @user.nil?
+
       @title    = "#{@username}'s Profile"
 
-      @lang_stats = build_highcharts_array(@user[:lang_stats])
+      @lang_stats = build_highcharts_array @user.lang_stats
 
       erb :profile
     end
-    
+
     not_found do
         erb 'This is nowhere to be found.'
     end
