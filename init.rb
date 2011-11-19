@@ -1,4 +1,11 @@
+require 'yajl'
+require 'lib/search'
+require 'models/user'
+
 module HireMe
+
+  API = "https://api.github.com"
+
   class Init < Sinatra::Base
 
     configure do
@@ -40,7 +47,7 @@ module HireMe
       @username = params[:username]
       search = HireMe::User.find_by_name(@username)
       pass if search.nil?
-      
+
       user     = search[:user]
       @title    = "#{@username}'s Profile"
 
@@ -48,7 +55,7 @@ module HireMe
 
       erb :profile
     end
-    
+
     not_found do
         erb 'This is nowhere to be found.'
     end
