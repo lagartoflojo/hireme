@@ -10,16 +10,16 @@ module HireMe
                   :lang_stats
 
     def initialize params
-      @login      = user["login"]
-      @name       = user["name"]
-      @bio        = user["bio"]
-      @avatar_url = user["avatar_url"]
-      @lang_stats = lang_stats "#{API}/users/#{user['login']}/repos", 1
+      @login      = params["login"]
+      @name       = params["name"]
+      @bio        = params["bio"]
+      @avatar_url = params["avatar_url"]
+      @lang_stats = get_lang_stats "#{API}/users/#{params['login']}/repos", 1
     end
 
     private
 
-    def lang_stats url, page
+    def get_lang_stats url, page
       response = Typhoeus::Request.get url
 
       repos ||= []
@@ -27,7 +27,7 @@ module HireMe
 
       if next_link? response.headers_hash
         url = "#{url.gsub(/\?page.*?$/, '')}?page=#{page.next}"
-        lang_stats url, page.next
+        get_lang_stats url, page.next
       end
 
       langs = repos.flatten.collect { |repo| repo["language"] }.delete_if { |lang| lang == nil }.sort

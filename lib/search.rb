@@ -6,7 +6,7 @@ module HireMe
       if response.code == 404
         nil
       else
-        User.new Yajl::Parser.parse(response.body)
+        HireMe::User.new Yajl::Parser.parse(response.body)
       end
     end
   end

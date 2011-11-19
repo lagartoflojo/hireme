@@ -1,6 +1,4 @@
 require 'yajl'
-require 'lib/search'
-require 'models/user'
 
 module HireMe
 
@@ -44,14 +42,12 @@ module HireMe
     # Return JSON or HTML representing
     # the Github user
     get '/:username.?:format?' do
-      @username = params[:username]
-      search = HireMe::User.find_by_name(@username)
-      pass if search.nil?
+      @user = HireMe::Search.find params[:username]
+      pass if @user.nil?
 
-      user     = search[:user]
       @title    = "#{@username}'s Profile"
 
-      @lang_stats = build_highcharts_array(user[:lang_stats])
+      @lang_stats = build_highcharts_array @user.lang_stats
 
       erb :profile
     end
