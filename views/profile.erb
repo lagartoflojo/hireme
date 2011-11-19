@@ -2,7 +2,6 @@
 
 <section>
 <h2>Stats</h2>
-<%= @lang_stats %>
 
 <div id="container" class="highcharts-container" style="height:410px; margin: 0 2em; clear:both; min-width: 600px"></div>
 
@@ -17,31 +16,31 @@ $(document).ready(function() {
          plotShadow: false
       },
       title: {
-         text: 'Browser market shares at a specific website, 2010'
+         text: ''
       },
       tooltip: {
+         enabled: false,
          formatter: function() {
             return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
          }
       },
+      
       plotOptions: {
          pie: {
             allowPointSelect: true,
             cursor: 'pointer',
             dataLabels: {
                enabled: true,
-               color: Highcharts.theme.textColor || '#000000',
-               connectorColor: Highcharts.theme.textColor || '#000000',
                formatter: function() {
-                  return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
+                  return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.percentage,2) +' %';
                }
             }
          }
       },
        series: [{
          type: 'pie',
-         name: 'Browser share',
-         data: 
+         name: 'Language Share',
+         data: <%= @lang_stats %>
       }]
    });
 });
