@@ -3,28 +3,14 @@ require 'yajl'
 module HireMe
   class User
 
-    attr_accessor :login,
-                  :name,
-                  :bio,
-                  :avatar_url,
-                  :lang_stats,
-                  :email,
-                  :location,
-                  :hireable,
-                  :public_repos,
-                  :public_gists
-
     def initialize params
-      @login        = params["login"]
-      @email        = params["email"]
-      @name         = params["name"]
-      @bio          = params["bio"]
-      @avatar_url   = params["avatar_url"]
-      @location     = params["location"]
-      @hireable     = params["hireable"]
-      @public_repos = params["public_repos"]
-      @public_gists = params["public_gists"]
-      @lang_stats   = get_lang_stats "#{API}/users/#{params['login']}/repos", 1
+      params["lang_stats"] = get_lang_stats "#{API}/users/#{params['login']}/repos", 1
+
+      params.each_key do |key|
+        HireMe::User.send :attr_accessor, key.to_sym
+        instance_variable_set "@#{key}", params["#{key}"]
+      end
+
     end
 
     private
