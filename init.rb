@@ -10,10 +10,10 @@ module HireMe
         array = "["
         data.each_with_index do |datum, i|
           inner_array = "["
-          inner_array << "'" + datum[:lang] + "'"
-          inner_array << ","
+          inner_array << '"' + datum[:lang] + '"'
+          inner_array << ','
           inner_array << datum[:percentage].to_s
-          inner_array << "]"
+          inner_array << ']'
           array << inner_array
           array << "," unless i == data.size-1
         end
@@ -41,9 +41,9 @@ module HireMe
       @title    = "#{@username}'s Profile"
 
       stats = [
-        {lang: "Ruby", count: 10, percentage: (10.0/21.0).round(4)},
-        {lang: "PHP", count: 4, percentage: (4.0/21.0).round(4)},
-        {lang: "Python", count: 7, percentage: (7.0/21.0).round(4)}
+        {lang: "Ruby", count: 10, percentage: (10.0/21.0).round(2)},
+        {lang: "PHP", count: 4, percentage: (4.0/21.0).round(2)},
+        {lang: "Python", count: 7, percentage: (7.0/21.0).round(2)}
       ]
 
       @lang_stats = build_highcharts_array(stats)
