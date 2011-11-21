@@ -7,8 +7,7 @@ module HireMe
       params["lang_stats"] = get_lang_stats "#{API}/users/#{params['login']}/repos", 1
 
       params.each_key do |key|
-        HireMe::User.send :attr_accessor, key.to_sym
-        instance_variable_set "@#{key}", params["#{key}"]
+        set_attribute key
       end
 
     end
@@ -18,10 +17,6 @@ module HireMe
     end
 
     private
-
-    def method_missing method, *arguments, &block
-      nil
-    end
 
     def get_lang_stats url, page
       response = Typhoeus::Request.get url
@@ -50,6 +45,15 @@ module HireMe
     def next_link? headers
         next_link, = headers["Link"].scan('rel="next"') unless headers["Link"].empty?
         return !!next_link
+    end
+
+    def set_attribute key
+      HireMe::User.send :attr_accessor, key.to_sym
+      instance_variable_set "@#{key}", params["#{key}"]
+    end
+
+    def method_missing method, *arguments, &block
+      set_attribute method.to_s
     end
   end
 end
