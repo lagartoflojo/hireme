@@ -9,7 +9,7 @@ module HireMe
       Typhoeus::Request.get "#{API}/users/#{username}"
     end
 
-    def get_user_lang_stats url, page
+    def self.get_user_lang_stats url, page
       response = Typhoeus::Request.get url
 
       repos ||= []
