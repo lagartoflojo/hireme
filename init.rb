@@ -1,9 +1,6 @@
 require 'yajl'
 
 module HireMe
-
-  API = "https://api.github.com"
-
   class Init < Sinatra::Base
 
     configure do
@@ -27,27 +24,10 @@ module HireMe
       end # end build_highcharts_array
     end
 
-    # mime_type :json, 'application/json'
-
-    # before do
-    #   content_type :json
-    # end
-
     # Show a search box
     get '/' do
       erb :index
     end
-
-
-    get '/about' do
-      erb 'soon...'    
-    end
-    
-    get '/contact' do
-      erb 'soon...'
-    end
-    
-    
 
     # Return JSON or HTML representing
     # the Github user

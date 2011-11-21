@@ -1,13 +1,10 @@
 module HireMe
   class Search
     def self.find username
-      response = Typhoeus::Request.get "#{API}/users/#{username}"
+      response = HireMe::Github.get_user_profile username
 
-      if response.code == 404
-        nil
-      else
-        HireMe::User.new Yajl::Parser.parse(response.body)
-      end
+      return nil if response.code == 404
+      HireMe::User.new Yajl::Parser.parse(response.body)
     end
   end
 end
