@@ -5,7 +5,7 @@ module HireMe
   PAGE = 1
 
   class Github
-    def get_user_profile username
+    def self.get_user_profile username
       Typhoeus::Request.get "#{API}/users/#{username}"
     end
 
@@ -15,7 +15,7 @@ module HireMe
       repos ||= []
       repos <<  Yajl::Parser.parse(response.body)
 
-      if next_link? response.headers_hash
+      if self.next_link? response.headers_hash
         get_user_lang_stats "#{url.gsub(/\?page.*?$/, '')}?page=#{page.next}", page.next
       end
 
@@ -34,7 +34,7 @@ module HireMe
 
     private
 
-    def next_link? headers
+    def self.next_link? headers
       next_link, = headers["Link"].scan('rel="next"') unless headers["Link"].empty?
       return !!next_link
     end
